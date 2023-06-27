@@ -24,6 +24,8 @@ const ingredients = [
 
 const ingredients = ["Potatoes", "Mushrooms", "Garlic", "Tomatos", "Herbs", "Condiments"];
 
+const listIngredientsEl = document.querySelector("#ingredients");
+
 const makeLiOPtions = (ingredientsMass) => {
   return ingredientsMass.map((ingredient) => {
     const liEl = document.createElement("li");
