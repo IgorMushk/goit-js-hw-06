@@ -54,6 +54,6 @@ const markup = images
     </li>`
   )
   .join("");
-console.log(markup);
+//console.log(markup);
 // console.dir(markup);
 galleryListRef.insertAdjacentHTML("beforeend", markup);
