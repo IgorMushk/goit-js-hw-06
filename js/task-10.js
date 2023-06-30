@@ -43,10 +43,13 @@ function getRandomHexColor() {
 const inputEl = document.querySelector("input");
 const btnCreateEl = document.querySelector("[data-create]");
 const btnDestroyEl = document.querySelector("[data-destroy]");
+const boxParentEl = document.querySelector("#boxes");
 
 let quantityBox = 0;
 const heightStart = 30;
 const widthStart = 30;
+const increment = 10;
+const randomBoxs = [];
 
 inputEl.addEventListener("blur", onInputNum);
 btnCreateEl.addEventListener("click", onCreateBoxes);
@@ -60,17 +63,23 @@ function onCreateBoxes(event) {
   createBoxes(quantityBox);
 }
 
-// Коллекция для теста из 3 объектов
-const randomBoxs = [
-  { height: heightStart + 10, width: widthStart + 10, color: "#04058f" },
-  { height: heightStart + 20, width: widthStart + 20, color: "#d8fb59" },
-  { height: heightStart + 30, width: widthStart + 30, color: "#5dff3b" },
-];
+function createCollectionParams(amount) {
+  let startH = heightStart;
+  let startW = widthStart;
+
+  for (let index = 0; index < amount; index++) {
+    startH += increment;
+    startW += increment;
+    randomBoxs.push({
+      height: startH,
+      width: startW,
+      color: getRandomHexColor(),
+    });
+  }
+}
 
 function createBoxes(amount) {
-  // <<<--- for of --- Создание массива объекто размеров и цыетов для div-box --->>>
-
-  const boxParentEl = document.querySelector("#boxes");
+  createCollectionParams(amount);
 
   const boxElementArr = randomBoxs.map((randomBox) => {
     const boxEl = document.createElement("div");
@@ -84,6 +93,6 @@ function createBoxes(amount) {
 }
 
 function destroyBoxes() {
-  console.log("destroyBoxes(), которая очищает содержимое div#boxes, тем самым удаляя все созданные элементы");
-  console.log("Очистки коллекции элементов randomBoxs[{},{},{}] ...");
+  boxParentEl.innerHTML = "";
+  randomBoxs.length = 0;
 }
