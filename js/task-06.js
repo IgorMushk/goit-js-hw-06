@@ -35,7 +35,7 @@ const minLength = Number(inputEl.dataset.length);
 inputEl.addEventListener("blur", onValidateInput);
 
 function onValidateInput(event) {
-  if (Number(event.currentTarget.value.length) < minLength) {
+  if (Number(event.currentTarget.value.length) < minLength || Number(event.currentTarget.value.length) > minLength) {
     inputEl.classList.remove("valid");
     inputEl.classList.add("invalid");
     return;
